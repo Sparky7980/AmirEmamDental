@@ -17,29 +17,30 @@
   </div>
 
   <script>
-    fetch("https://raw.githubusercontent.com/Sparky7980/AmirEmamDental/main/backend/calendar.json")
-      .then(response => response.json())
-      .then(data => {
-        const calendarContainer = document.getElementById("calendar");
-        calendarContainer.innerHTML = "";
+  fetch("https://corsproxy.io/?https://raw.githubusercontent.com/Sparky7980/AmirEmamDental/main/backend/calendar.json")
+    .then(response => response.json())
+    .then(data => {
+      const calendarContainer = document.getElementById("calendar");
+      calendarContainer.innerHTML = "";
 
-        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-        days.forEach(day => {
-          const value = data[day] || "Closed";
-          const dayEl = document.createElement("div");
-          dayEl.className = "day";
+      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      days.forEach(day => {
+        const value = data[day] || "Closed";
+        const dayEl = document.createElement("div");
+        dayEl.className = "day";
 
-          dayEl.innerHTML = `
-            <div class="day-name">${day}</div>
-            <div class="day-value">${value}</div>
-          `;
+        dayEl.innerHTML = `
+          <div class="day-name">${day}</div>
+          <div class="day-value">${value}</div>
+        `;
 
-          calendarContainer.appendChild(dayEl);
-        });
-      })
-      .catch(error => {
-        document.getElementById("calendar").innerHTML = `<p>Error loading calendar: ${error}</p>`;
+        calendarContainer.appendChild(dayEl);
       });
-  </script>
+    })
+    .catch(error => {
+      document.getElementById("calendar").innerHTML = `<p>Error loading calendar: ${error}</p>`;
+    });
+</script>
+
 </body>
 </html>
